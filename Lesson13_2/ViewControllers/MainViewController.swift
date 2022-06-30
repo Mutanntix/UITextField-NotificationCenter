@@ -19,7 +19,7 @@ class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         initializate()
     }
 
@@ -30,6 +30,8 @@ class MainViewController: UIViewController {
         becomeTextFieldsDelegate()
         setupBirhdateTextField()
         startObserveKeyboardNotifications()
+        addTargets()
+        setupDatePicker()
     }
     
     deinit {
@@ -44,6 +46,15 @@ extension MainViewController {
         [loginStackView, mainButton].forEach({
             mainView.addSubview($0)
         })
+    }
+    
+    private func showAlert() {
+        let alert =
+        UIAlertController(title: "Error!",
+                          message: "Please, fill all of the fields", preferredStyle: .actionSheet)
+        let action = UIAlertAction(title: "Ok", style: .cancel)
+        alert.addAction(action)
+        self.present(alert, animated: true)
     }
     
     private func setupMainView() {
@@ -87,8 +98,66 @@ extension MainViewController {
 
 //MARK: Methods
 extension MainViewController {
+    private func addTargets() {
+        birthdayDatePicker.addTarget(self,
+                                     action: #selector(dateChanged),
+                                     for: .valueChanged)
+        mainButton
+            .addTarget(self,
+                       action: #selector(signInBtnPressed),
+                       for: .touchUpInside)
+    }
+    
+    private func setupDatePicker() {
+        birthdayDatePicker.minimumDate = Calendar.current.date(byAdding: .year, value: -100, to: .now)
+        birthdayDatePicker.maximumDate = Calendar.current.date(byAdding: .year, value: -10, to: .now)
+    }
+    
+    private func getStringsFromFields() ->
+    (login: String, nick: String, pass: String, date: String)?
+    {
+        guard let login = loginStackView.loginTF.text,
+              let pass = loginStackView.passwordTF.text,
+              let nick = loginStackView.nickNameTF.text,
+              let dateStr = loginStackView.nickNameTF.text,
+              !login.isEmpty && !pass.isEmpty &&
+                !nick.isEmpty && !dateStr.isEmpty
+        else { return nil }
+        
+        return (login, pass, nick, dateStr)
+    }
+    
+    private func showSheetVCWith(user: User) {
+        let sheetVC = SheetViewController()
+        if let sheet = sheetVC.sheetPresentationController {
+            sheet.detents = [.medium(), .large()]
+        }
+        sheetVC.user = user
+        
+        self.present(sheetVC, animated: true)
+    }
+    
     @objc private func doneBtnPressed() {
         view.endEditing(true)
+    }
+    
+    @objc private func signInBtnPressed() {
+        guard let (login, nick,
+        pass, date) = getStringsFromFields(),
+              let user = User(login: login,
+                              nickname: nick,
+                              password: pass,
+                              birhdate: date)
+        else {
+            showAlert()
+            return
+        }
+        showSheetVCWith(user: user)
+    }
+    
+    @objc private func dateChanged() {
+        let dateString = User.getBirdateString(date: birthdayDatePicker.date)
+        loginStackView.updateBirthdayTextField(with: dateString)
     }
     
     @objc private func keyboardAppeared(_ notification: Notification) {

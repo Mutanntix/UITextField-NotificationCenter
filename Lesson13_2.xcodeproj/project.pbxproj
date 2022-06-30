@@ -19,6 +19,8 @@
 		FDB91FB1286DAAFE002A20EE /* MainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB91FB0286DAAFE002A20EE /* MainButton.swift */; };
 		FDB91FB4286DAB40002A20EE /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB91FB3286DAB40002A20EE /* Colors.swift */; };
 		FDB91FB6286DAF6D002A20EE /* MainDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB91FB5286DAF6D002A20EE /* MainDatePicker.swift */; };
+		FDB91FB8286DD6D1002A20EE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB91FB7286DD6D1002A20EE /* User.swift */; };
+		FDB91FBA286DDCFE002A20EE /* SheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB91FB9286DDCFE002A20EE /* SheetViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +37,8 @@
 		FDB91FB0286DAAFE002A20EE /* MainButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainButton.swift; sourceTree = "<group>"; };
 		FDB91FB3286DAB40002A20EE /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		FDB91FB5286DAF6D002A20EE /* MainDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDatePicker.swift; sourceTree = "<group>"; };
+		FDB91FB7286DD6D1002A20EE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		FDB91FB9286DDCFE002A20EE /* SheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				FDB91F93286DA727002A20EE /* MainViewController.swift */,
+				FDB91FB9286DDCFE002A20EE /* SheetViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -112,6 +117,7 @@
 		FDB91FA9286DA7F5002A20EE /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				FDB91FB7286DD6D1002A20EE /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -202,12 +208,14 @@
 			files = (
 				FDB91FAC286DA91D002A20EE /* MainTextField.swift in Sources */,
 				FDB91FB4286DAB40002A20EE /* Colors.swift in Sources */,
+				FDB91FBA286DDCFE002A20EE /* SheetViewController.swift in Sources */,
 				FDB91F94286DA727002A20EE /* MainViewController.swift in Sources */,
 				FDB91FB1286DAAFE002A20EE /* MainButton.swift in Sources */,
 				FDB91FB6286DAF6D002A20EE /* MainDatePicker.swift in Sources */,
 				FDB91FAD286DA91D002A20EE /* HeaderLabel.swift in Sources */,
 				FDB91F90286DA727002A20EE /* AppDelegate.swift in Sources */,
 				FDB91FAF286DA93E002A20EE /* UserLoginStackView.swift in Sources */,
+				FDB91FB8286DD6D1002A20EE /* User.swift in Sources */,
 				FDB91F92286DA727002A20EE /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

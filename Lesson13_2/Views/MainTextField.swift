@@ -29,11 +29,30 @@ class MainTextField: UITextField {
         if isSecure {
             self.rightView = UIView()
             self.rightViewMode = .always
+            self.clearsOnBeginEditing = false
         }
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override var isSecureTextEntry: Bool {
+        didSet {
+            if isFirstResponder {
+                _ = becomeFirstResponder()
+            }
+        }
+    }
+
+    override func becomeFirstResponder() -> Bool {
+
+        let success = super.becomeFirstResponder()
+        if isSecureTextEntry, let text = self.text {
+            self.text?.removeAll()
+            insertText(text)
+        }
+        return success
     }
     
     override func layoutSubviews() {
@@ -81,9 +100,6 @@ extension MainTextField {
     }
     
     private func changeSecureState() {
-        if !isSecureTextEntry {
-            self.text = nil
-        }
         isSecureTextEntry = !isSecureTextEntry
     }
 }

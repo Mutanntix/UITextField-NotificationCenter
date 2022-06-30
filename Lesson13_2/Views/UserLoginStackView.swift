@@ -38,6 +38,10 @@ class UserLoginStackView: UIStackView {
         addSubviews()
     }
     
+    public func updateBirthdayTextField(with str: String) {
+        birthDateTF.text = str
+    }
+    
     public func setDatePickerForKeyboard(picker: UIDatePicker) {
         birthDateTF.inputView = picker
     }
